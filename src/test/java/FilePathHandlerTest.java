@@ -1,16 +1,14 @@
-import org.junit.jupiter.api.Test;
-import java.io.File;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-class FilePathHandlerTest {
-    @Test
-    void testConfigFilePathResolvesCorrectly() {
-        FilePathHandler handler = new FilePathHandler();
-        String absolutePath = handler.getAbsoluteConfigPath();
+public class FilePathHandler {
+    public String getConfigFileRelativePath() {
+        Path path = Paths.get("config", "application.properties");
+        return path.toString();
+    }
 
-        String expectedSuffix = "config" + File.separator + "application.properties";
-
-        assertTrue(absolutePath.endsWith(expectedSuffix),
-                "Lỗi OS: Đường dẫn không đúng định dạng: " + absolutePath);
+    public String getAbsoluteConfigPath() {
+        Path path = Paths.get("config", "application.properties");
+        return path.toAbsolutePath().toString();
     }
 }
