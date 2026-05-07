@@ -1,12 +1,14 @@
-import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FilePathHandler {
     public String getConfigFileRelativePath() {
-        return "config\\application.properties";
+        Path path = Paths.get("config", "application.properties");
+        return path.toString();
     }
 
     public String getAbsoluteConfigPath() {
-        File file = new File(getConfigFileRelativePath());
-        return file.getAbsolutePath();
+        Path path = Paths.get("config", "application.properties");
+        return path.toAbsolutePath().toString();
     }
 }
